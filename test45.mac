@@ -1,0 +1,61 @@
+#test.mac
+/control/verbose 2
+#/control/saveHistory
+/run/verbose 2
+/leap/phys/addPhysics polarized
+
+
+/run/printProgress 1
+
+/run/initialize
+
+#-----------geometry-----------------------------
+#/leap/det/SetCoreThick corethick mm
+#/leap/det/SetConvThick convthick mm
+
+/leap/det/Setnumberofcrystals two
+/leap/beamline/Collimator 5 mm
+/leap/det/dCalo 56 cm
+/leap/det/WithSicintillatorFinger true
+/leap/det/WithLanexScreen true
+/leap/det/WithStrawDetector false
+
+/leap/det/SetCaloXpos 0 mm
+/leap/det/update
+
+
+/polarization/manager/verbose 1
+/polarization/volume/set IronCore 0. 0. 1
+/polarization/volume/list
+
+#-----------particle-gunlike-------------------------------
+/gps/energy 60 MeV
+/gps/number 1000
+/gps/particle e-
+/gps/pos/centre 0.0 0.0 -3870.0 mm
+
+#---------gps-commands-------------------------------------
+#simply comment if not needed
+#2D-Beam
+/gps/ene/type Gauss
+/gps/ene/sigma 0.0 MeV
+/gps/pos/type Beam
+/gps/pos/sigma_x 0.001  mm
+/gps/pos/sigma_y 0.001  mm
+/gps/ang/type beam2d
+/gps/ang/sigma_x 0.003 rad
+/gps/ang/sigma_y 0.003 rad
+/gps/ang/rot1 0 1 0
+/gps/ang/rot2 1 0 0
+
+#------------------------------------------------------
+#run in both polarization directions
+
+#/gps/polarization 0. 0. polDeg
+
+#/leap/det/update
+/run/beamOn 1
+
+#/gps/polarization 0. 0. -polDeg
+
+#/run/beamOn 1

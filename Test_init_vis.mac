@@ -1,0 +1,52 @@
+# Macro file for the initialization of leap sim
+# in interactive session
+#
+# Set some default verbose
+#
+/control/verbose 2
+/control/saveHistory
+/run/verbose 2
+/leap/phys/addPhysics polarized
+#/run/printProgress 1
+# Initialize kernel
+/run/initialize
+#
+/gps/energy 60 MeV
+/gps/number 1000 #number of electrons in a bunch
+/gps/particle e-
+/gps/pos/centre 0.0 0.0 -3870.0 mm  # Position of the edge of the crystal is at y= 225.0055 mm
+#/leap/det/Setnumberofcrystals one
+/leap/beamline/Collimator 5 mm
+/leap/det/dCalo 56 cm
+/leap/det/Setnumberofcrystals two
+#/leap/det/Setnumberofcrystals nine
+/leap/det/SetCaloXpos 0 mm
+
+/leap/det/WithSicintillatorFinger false
+/leap/det/WithLanexScreen true
+/leap/det/WithStrawDetector true
+#/leap/det/update
+
+
+#---------gps-commands-------------------------------------
+#simply comment if not needed
+#2D-Beam
+/gps/ene/type Gauss
+/gps/ene/sigma 0.0 MeV #2.5 MeV
+/gps/pos/type Beam
+/gps/pos/sigma_x 0.001  mm
+/gps/pos/sigma_y 0.001  mm
+#/gps/pos/sigma_r 0.001  mm
+/gps/ang/type beam2d
+/gps/ang/sigma_x 0.003 rad #0.003 rad
+/gps/ang/sigma_y 0.003 rad #0.003 rad
+/gps/ang/rot1 0 1 0
+/gps/ang/rot2 1 0 0
+
+#Point like source
+#/gps/pos/type Point
+#/gps/direction 0 0 1
+#------------------------------------------------------
+
+# Visualization setting
+/run/beamOn 1
